@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" href="/favicon.ico" />
+		<link rel="manifest" href="/manifest.json">
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+		<meta name="description" content="Stockhub is a free platform used to track social metrics such as  daily tweets and reddit posts
+		about us stocks. Stockhub also tracks options volume for 530 securities. Search from 8000 us stocks for free. " >
+		<meta name="author" content="Aparimeya Taneja">
+		<meta name="theme-color" content="#101010">
+		
+		<!-- <meta prefix="og: http://ogp.me/ns#" property="og:type" content="website" />
+
+		<meta prefix="og: http://ogp.me/ns#" property="og:title" content="StockHub" />
+		
+		<meta prefix="og: http://ogp.me/ns#" property="og:image" content="https://stockhub.app/logo-512.png">
+		
+		<meta prefix="og: http://ogp.me/ns#" property="og:url" content="https://stockhub.app" />
+	
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		-->
+
+	<link rel="apple-touch-icon" href="logo-512.png">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+
+
+		<script>
+			if ('serviceWorker' in navigator) {
+				window.addEventListener('load', function() {
+					navigator.serviceWorker.register('/service-worker.js').then(function(registration) {
+					// Registration was successful
+					console.log('ServiceWorker registration successful with scope: ', registration.scope);
+					}, function(err) {
+					// registration failed :(
+					console.log('ServiceWorker registration failed: ', err);
+					});
+				});
+				}
+
+		</script>
+		%svelte.head%
+	</head>
+	<body>
+		<div id="svelte">%svelte.body%</div>
+		<script>
+			let deferredPrompt;
+
+window.addEventListener('beforeinstallprompt', (e) => {
+  // Prevent the mini-infobar from appearing on mobile
+  e.preventDefault();
+  // Stash the event so it can be triggered later.
+  deferredPrompt = e;
+  // Update UI notify the user they can install the PWA
+  showInstallPromotion();
+  // Optionally, send analytics event that PWA install promo was shown.
+  console.log(`'beforeinstallprompt' event was fired.`);
+});
+		</script>
+	</body>
+</html>
